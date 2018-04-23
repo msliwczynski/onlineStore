@@ -7,6 +7,7 @@
     "start-ie": "set NODE_ENV=hmr_off&& node server.js",
     "lint": "eslint src *.js",
     "build": "set NODE_ENV=production&& set NODE_SOURCEMAPS=source-map && npm run test && webpack -p",
+    "build-no-test": "set NODE_ENV=production&& set NODE_SOURCEMAPS=source-map && webpack -p",
     "test": "set NODE_SINGLE_RUN=true&& set NODE_ENV=test&& karma start",
     "test-watch": "set NODE_ENV=test&& karma start"
   },
