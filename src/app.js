@@ -2,19 +2,24 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import ProductsPage from './components/productsPage';
+import CartPage from './components/cartPage';
 
 function mapStateToProps(state) {
     return {
-        forsikring: state.forsikring
+        pages: state.pages
     };
 }
 
 @connect(mapStateToProps)
 class App extends React.Component {
     render() {
+        const {pages} = this.props;
+        console.log('pages', pages);
+
         return (
             <div className="container">
-                <ProductsPage />
+                {pages.activePage === 'product' && <ProductsPage />}
+                {pages.activePage === 'cart' && <CartPage />}
             </div>
         );
     }
