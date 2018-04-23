@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import fetchProducts from '../../common/forsikring/forsikring-actions';
+import fetchProducts from '../../actions/productsActions';
 import ProductItem from '../product-item';
 
 function mapStateToProps(state) {
     return {
-        forsikring: state.forsikring
+        products: state.products,
+        pages: state.pages
     };
 }
 
@@ -16,6 +17,7 @@ function getProductsItems(products) {
                          product={product.product}
                          price={product.price}
                          description={product.description}
+                         productObject={product}
             />
         );
     });
@@ -34,15 +36,16 @@ class ProductsPage extends React.Component {
     }
 
     render() {
-        const {forsikring} = this.props;
-        console.log(forsikring);
-        console.log(forsikring.productsData);
+        const {products, pages} = this.props;
+        console.log(products);
+        console.log(products.productsData);
+        console.log(pages.activePage);
 
-        if (!forsikring.isFetching && forsikring.productsData.length) {
-            const products = getProductsItems(forsikring.productsData);
+        if (!products.isFetching && products.productsData.length) {
+            const productsComponents = getProductsItems(products.productsData);
             return (
                 <div className="row">
-                    {products}
+                    {productsComponents}
                 </div>
             );
         } else {
