@@ -1,5 +1,4 @@
 export function addProduct(product) {
-    console.log('addProduct', product);
     return {type: 'ADD_PRODUCT_TO_CART', data: product};
 }
 

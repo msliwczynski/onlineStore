@@ -15,7 +15,6 @@ function mapStateToProps(state) {
 class App extends React.Component {
     render() {
         const {pages} = this.props;
-        console.log('pages', pages);
 
         return (
             <div className="container">
