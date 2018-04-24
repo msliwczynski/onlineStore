@@ -43,11 +43,17 @@ function getTotalPrice(cartItems) {
     return totalPrice.toFixed(2);
 }
 
+function getRandomIndex(max) {
+    return Math.floor(Math.random() * (max - 0) + 0);
+}
+
+
 function mapStateToProps(state) {
     return {
         cartItems: state.cart
     };
 }
+
 
 @connect(mapStateToProps)
 class CartPage extends React.Component {
@@ -55,11 +61,22 @@ class CartPage extends React.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.handleSave = this.handleSave.bind(this);
     }
 
     handleClick(event) {
         const dispatch = this.props.dispatch;
         dispatch(removeProduct(event.id));
+    }
+
+    handleSave() {
+        const cartItems = this.props.cartItems;
+        const dispatch = this.props.dispatch;
+        if (cartItems.cartItems.length > 0) {
+            const index = getRandomIndex(cartItems.cartItems.length);
+            dispatch(removeProduct(index));
+            setTimeout(this.handleSave, 1000);
+        }
     }
 
     render() {
@@ -89,6 +106,10 @@ class CartPage extends React.Component {
                     </tr>
                   </tbody>
                 </table>
+                <div>
+                    <button type="button" className="btn btn-success btn-lg btn-block"
+                        onClick={this.handleSave}>Buy</button>
+                </div>
             </div>
             );
     }
