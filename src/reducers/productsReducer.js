@@ -1,4 +1,4 @@
-const initState = {productsData: [], isFetching: false, isError: false, ready: false};
+const initState = {productsData: [], description: '', isFetching: false, isError: false, ready: false};
 
 export default function reducer(state = {...initState}, action) {
     switch (action.type) {
@@ -10,6 +10,9 @@ export default function reducer(state = {...initState}, action) {
     }
     case 'FETCH_PRODUCTS_REJECTED': {
         return {...state, isError: true};
+    }
+    case 'SHOW_PRODUCT_DESCRIPTION': {
+        return {...state, description: action.payload};
     }
     default: {
         return {...state, isError: true};

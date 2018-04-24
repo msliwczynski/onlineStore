@@ -7,7 +7,7 @@ class ProductItem extends React.Component {
     }
 
     render() {
-        const {product, price, onClick} = this.props;
+        const {product, price, onClickButton} = this.props;
         const productObject = {
             name: product,
             price: price
@@ -24,7 +24,7 @@ class ProductItem extends React.Component {
                             <button
                                 type="button"
                                 className="btn btn-danger"
-                                onClick={(e) => onClick(e.target, productObject)}>Add to Cart
+                                onClick={(e) => onClickButton(e.target, productObject)}>Add to Cart
                             </button>
                         </div>
                     </div>
@@ -38,7 +38,7 @@ ProductItem.propTypes = {
     product: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired
+    onClickButton: PropTypes.func.isRequired
 };
 
 export default ProductItem;

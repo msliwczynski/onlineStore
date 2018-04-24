@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default function fetchProducts() {
+export function fetchProducts() {
     return function (dispatch) {
         dispatch({type: 'INIT_FETCH_PRODUCTS', payload: null});
         axios.get('/products/')
@@ -11,4 +11,8 @@ export default function fetchProducts() {
                 dispatch({type: 'FETCH_PRODUCTS_REJECTED', payload: err});
             });
     };
+}
+
+export function showDescription(description) {
+    return {type: 'SHOW_PRODUCT_DESCRIPTION', payload: description};
 }

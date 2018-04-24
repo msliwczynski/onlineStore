@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import fetchProducts from '../../actions/productsActions';
+import {fetchProducts, showDescription} from '../../actions/productsActions';
 import ProductItem from '../product-item';
 import {addProduct} from '../../actions/cartActions';
 
@@ -10,14 +10,16 @@ function mapStateToProps(state) {
     };
 }
 
-function getProductsItems(products, onClickFunction) {
+function getProductsItems(products, onClickButtonFunction, onClickFunction) {
+    console.log('onClickFn', onClickFunction);
+    console.log('onClickbuttonFn', onClickButtonFunction);
     return products.map((product, index) => {
         return (
             <ProductItem key={index}
                          product={product.product}
                          price={product.price}
                          description={product.description}
-                         onClick={onClickFunction}
+                         onClickButton={onClickButtonFunction}
             />
         );
     });
@@ -39,6 +41,11 @@ class ProductsPage extends React.Component {
     handleClick(event, product) {
         const dispatch = this.props.dispatch;
         dispatch(addProduct(product));
+    }
+
+    handleDescription(event, description) {
+        const dispatch = this.props.dispatch;
+        dispatch(showDescription(description));
     }
 
     render() {
