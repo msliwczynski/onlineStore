@@ -16,7 +16,7 @@ export default function reducer(state = {...initState}, action) {
 }
 
 function addItem(cartItems, product) {
-    const item = cartItems.find((item) => item.product === product.product);
+    const item = cartItems.find((item) => item.name === product.name);
     if (item) {
         item.number++;
     } else {
@@ -26,8 +26,7 @@ function addItem(cartItems, product) {
     return cartItems;
 }
 
-function removeItem(cartItems, product) {
-    const index = cartItems.findIndex((item) => item.product === product.product);
+function removeItem(cartItems, index) {
     if (index > -1) {
         cartItems.splice(index, 1);
     }
