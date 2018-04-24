@@ -13,10 +13,10 @@ class ProductItem extends React.Component {
             price: price
         };
         return (<div className="col-sm-4 bg-white">
-            <div className="card">
+            <div className="card border">
                 <div className="text-center card-body product-body">
                     <h5 className="card-title">{product}</h5>
-                    <div className="row bg-light product-price-button">
+                    <div className="row bg-light product-price-button border">
                         <div className="col text-center">
                             <h4 className="text-danger">${price}</h4>
                         </div>
