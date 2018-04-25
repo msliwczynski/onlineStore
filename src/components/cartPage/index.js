@@ -85,7 +85,6 @@ class CartPage extends React.Component {
         const totalPrice = getTotalPrice(cartItems.cartItems);
 
         return (
-            <div>
                 <table className="table table-borderless">
                   <thead>
                     <tr>
@@ -102,15 +101,11 @@ class CartPage extends React.Component {
                     <tr>
                         <td colSpan="4"></td>
                         <td><h3>Total {totalPrice}</h3></td>
-                        <td></td>
+                        <td><button type="button" className="btn btn-success"
+                                                    onClick={this.handleSave}>Buy</button></td>
                     </tr>
                   </tbody>
                 </table>
-                <div>
-                    <button type="button" className="btn btn-success btn-lg btn-block"
-                        onClick={this.handleSave}>Buy</button>
-                </div>
-            </div>
             );
     }
 }
