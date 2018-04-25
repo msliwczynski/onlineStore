@@ -19,7 +19,7 @@ function getProductsRow(cartItems, onClickFunction) {
         return cartItems.map((item, index) => {
             return (
                 <tr key={index} className={getBorderClass(index)}>
-                   <th scope="row">{index}</th>
+                   <th scope="row">{index + 1}</th>
                    <td>{item.name}</td>
                    <td>{item.price}</td>
                    <td>{item.number}</td>
