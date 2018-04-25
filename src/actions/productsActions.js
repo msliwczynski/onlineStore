@@ -16,3 +16,7 @@ export function fetchProducts() {
 export function showDescription(description) {
     return {type: 'SHOW_PRODUCT_DESCRIPTION', payload: description};
 }
+
+export function hideDescription() {
+    return {type: 'HIDE_PRODUCT_DESCRIPTION', payload: ''};
+}

@@ -7,14 +7,14 @@ class ProductItem extends React.Component {
     }
 
     render() {
-        const {product, price, onClickButton} = this.props;
+        const {product, price, description, onClickButton, handleDescription} = this.props;
         const productObject = {
             name: product,
             price: price
         };
         return (<div className="col-sm-4 bg-white">
             <div className="card border">
-                <div className="text-center card-body product-body">
+                <div className="text-center card-body product-body" onClick={(e) => handleDescription(e.target, description)}>
                     <h5 className="card-title">{product}</h5>
                     <div className="row bg-light product-price-button border">
                         <div className="col text-center">
@@ -38,7 +38,8 @@ ProductItem.propTypes = {
     product: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
-    onClickButton: PropTypes.func.isRequired
+    onClickButton: PropTypes.func.isRequired,
+    handleDescription: PropTypes.func.isRequired
 };
 
 export default ProductItem;

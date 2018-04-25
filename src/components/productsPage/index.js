@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchProducts, showDescription} from '../../actions/productsActions';
+import {fetchProducts, showDescription, hideDescription} from '../../actions/productsActions';
 import ProductItem from '../product-item';
 import {addProduct} from '../../actions/cartActions';
 
@@ -11,8 +11,6 @@ function mapStateToProps(state) {
 }
 
 function getProductsItems(products, onClickButtonFunction, onClickFunction) {
-    console.log('onClickFn', onClickFunction);
-    console.log('onClickbuttonFn', onClickButtonFunction);
     return products.map((product, index) => {
         return (
             <ProductItem key={index}
@@ -20,6 +18,7 @@ function getProductsItems(products, onClickButtonFunction, onClickFunction) {
                          price={product.price}
                          description={product.description}
                          onClickButton={onClickButtonFunction}
+                         handleDescription={onClickFunction}
             />
         );
     });
@@ -31,6 +30,8 @@ class ProductsPage extends React.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.handleDescription = this.handleDescription.bind(this);
+        this.hideDescription = this.hideDescription.bind(this);
     }
 
     componentWillMount() {
@@ -44,18 +45,43 @@ class ProductsPage extends React.Component {
     }
 
     handleDescription(event, description) {
+        if (event.tagName !== 'BUTTON') {
+            const dispatch = this.props.dispatch;
+            dispatch(showDescription(description));
+        }
+    }
+
+    hideDescription() {
         const dispatch = this.props.dispatch;
-        dispatch(showDescription(description));
+        dispatch(hideDescription());
     }
 
     render() {
         const {products} = this.props;
 
         if (!products.isFetching && products.productsData.length) {
-            const productsComponents = getProductsItems(products.productsData, this.handleClick);
+            const productsComponents = getProductsItems(products.productsData, this.handleClick, this.handleDescription);
             return (
-                <div className="row">
-                    {productsComponents}
+                <div>
+                    <div className="row">
+                        <div className="col-sm">
+                        </div>
+                        <div className="col-sm">
+                        </div>
+                        <div className="col-sm alert alert-light">
+                            {products.description !== '' &&
+                                <div>
+                                    <div>{products.description}</div>
+                                    <div className="text-right">
+                                    <button className="btn btn-secondary btn-sm"
+                                        onClick={this.hideDescription}>close</button>
+                                    </div>
+                                </div>}
+                        </div>
+                    </div>
+                    <div className="row">
+                        {productsComponents}
+                    </div>
                 </div>
             );
         } else {
