@@ -14,6 +14,9 @@ export default function reducer(state = {...initState}, action) {
     case 'SHOW_PRODUCT_DESCRIPTION': {
         return {...state, description: action.payload};
     }
+    case 'HIDE_PRODUCT_DESCRIPTION': {
+        return {...state, description: action.payload};
+    }
     default: {
         return {...state, isError: true};
     }
